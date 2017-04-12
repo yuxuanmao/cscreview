@@ -7,4 +7,5 @@ do
 		echo $i
 	else
 		./my_prog > $i.out
+	fi
 done
