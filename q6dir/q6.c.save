@@ -1,0 +1,47 @@
+#include <stdio.h>
+#include <unistd.h>
+#include <stdlib.h>
+#include <string.h>
+#include <sys/wait.h>
+#include <sys/types.h>
+
+char** reverse(char** string_array, int string_length){
+	int max = 0;
+	char** result_array;
+	result_array = malloc((string_length+1)*sizeof(char*));
+	for(int i = 0; i < string_length; i++){
+		if(max < strlen(string_array[i])){
+			max = strlen(string_array[i]);
+		}
+	}
+	char reversed[max+1];
+	int g = 0;
+	for(int i = 0; i < string_length; i++){
+		if(max == strlen(string_array[i])){
+			int k = 0;
+			for(int j = max-1; i >= 0; i--){
+				reversed[j] = string_array[i][k];
+				k++;
+			}
+			reversed[max] = '\0';
+			result_array[g] = reversed;
+			g++;
+		}
+	}
+	result_array[g] = "\0";
+	return result_array;
+}
+
+int main(){
+	char* string_array[5] = ;
+	string_array = {"hello", "my", "name", "is", "Leon Mao"};
+	int string_length = 5;
+	char** result = reverse(string_array, string_length);
+
+	int i = 0;
+	while(strcmp(result[i], "\0") != 0){
+		printf("q6: %s\n", result[i]);
+		i ++;
+	}
+	return 0;
+}
